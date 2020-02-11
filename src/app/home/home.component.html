@@ -1,0 +1,137 @@
+﻿<!-- <h1>Hi {{currentUser.name}}!</h1>
+<p>You're logged in with Angular 6!!</p>
+<h3>All registered users:</h3>
+<ul>
+    <li *ngFor="let user of users">
+        {{user.username}} ({{user.firstName}} {{user.lastName}})
+        - <a (click)="deleteUser(user.id)" class="text-danger">Delete</a>
+    </li>
+</ul>
+<p><a [routerLink]="['/login']">Logout</a></p> -->
+<!-- 
+<nav class="navbar navbar-inverse ">
+    <div class="container-fluid">
+      <div class="navbar-header">
+        <a class="navbar-brand" href="#">WebSiteName</a>
+      </div>
+      <ul class="nav navbar-nav">
+        <li class="active"><a href="#">Home</a></li>
+        <li><a href="#">Page 1</a></li>
+        <li><a href="#">Page 2</a></li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li><a href="#"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
+        <li><a href="#"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+      </ul>
+    </div>
+  </nav> -->
+
+
+
+<!-- <nav class="navbar navbar-expand navbar-dark bg-dark navbar-fixed-top" *ngIf="currentUser">
+    <div class="navbar-nav">
+        <a class="nav-item nav-link" routerLink="/">Home</a>
+        <a class="nav-item nav-link" (click)="logout()">Logout</a>
+    </div>
+</nav> -->
+<nav class="navbar navbar-expand-sm bg-dark navbar-dark fixed-top">
+
+
+        <!-- <ul class="navbar-nav ml-auto">
+            <li class="nav-item" >
+              <a class="nav-link" href="#">Link</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Link</a>
+            </li>
+          </ul>
+
+ -->
+
+ <div class="d-flex flex-grow-1">
+    <span class="w-100 d-lg-none d-block"><!-- hidden spacer to center brand on mobile --></span>
+    <a class="navbar-brand d-none d-lg-inline-block" href="#">
+      PANPAN
+    </a>
+    <a class="navbar-brand-two mx-auto d-lg-none d-inline-block" href="#">
+        <img src="//placehold.it/40?text=LOGO" alt="logo">
+    </a>
+    <div class="w-100 text-right">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#myNavbar">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+    </div>
+</div>
+<div class="collapse navbar-collapse flex-grow-1 text-right" id="myNavbar">
+    <ul class="navbar-nav ml-auto flex-nowrap">
+        <li class="nav-item">
+            <button class="btn btn-danger navbar-btn">
+                <a href="#" class="nav-link m-2 menu-item nav-active" tex>Ask question</a>
+            </button>
+            
+        </li>
+        <li class="nav-item">
+            <a href="/home" class="nav-link m-2 menu-item nav-active">Home</a>
+        </li>
+        <li class="nav-item">
+            <a href="#" class="nav-link m-2 menu-item">Profile Setting</a>
+        </li>
+        <li class="nav-item">
+            <a href="#" class="nav-link m-2 menu-item">How it works</a>
+        </li>
+        <li class="nav-item">
+            <a href="/logout" class="nav-link m-2 menu-item">Logout</a>
+        </li>
+    </ul>
+</div>
+
+  </nav>
+
+
+<div>
+
+
+  
+   
+
+       <div class="container" class="jumbotron">
+
+            <div
+            class="search-results"
+            infiniteScroll
+            [infiniteScrollDistance]="2"
+            [infiniteScrollThrottle]="50"
+            (scrolled)="onScroll()"
+            >
+                    <div class="row" >
+                                    <div class="col-sm-2 col-md-3">
+                                        
+                                    </div>
+                                <div class="col-sm-2 col-md-6 p-2" >
+                                     
+                                        <div *ngFor="let post of allpost">
+                                        
+                                                <div class="card" >
+                                                
+                                                        
+                                                        <div class="card-body">
+                                                            <h5 class="card-title text-center ">PAN</h5>
+                                                                    <div>  
+                                                                        <p class="card-text-user">{{post.text}}</p> 
+                                                                    </div>
+                                                                <a href="#" class="btn btn-primary">Answers</a>
+                                                            </div>
+                                                        
+                                                    
+                                                        
+                                                </div>  
+                                                <div> <p> </p></div>
+                                        </div>
+                                   </div>
+                                   <div class="col-sm-2 col-md-3">
+                                        
+                                </div>
+                               </div>
+                    </div>
+         </div>
+</div>
