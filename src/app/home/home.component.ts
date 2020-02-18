@@ -37,23 +37,36 @@ export class HomeComponent implements OnInit {
         
     }
 
-    // load the Initial 6 posts
-  loadInitPost() {
-    const url = 'http://localhost:8080/post/user/questions'
-    
-    const emailId = JSON.parse(localStorage.getItem('currentUser'))['emailId'];
-    console.log("email id  is  " + emailId);
-    this.http.get(url,  {
-      params : {
-        'emailId' : JSON.parse(localStorage.getItem('currentUser'))['emailId']
-      }
+    loadInitPost(){
+      this.postService.loadInitPost()
+      .pipe().subscribe(
+        data => {
+          this.allpost = data;
+        },error => {
+          console.log(error);
+        }
+      )
+    }
 
-    }).subscribe(data => {
-      // this.allpost = data;
-      this.allpost = data;
-      console.log(this.allpost);
-    }, error => {console.log(error)});
-  }
+
+
+    // load the Initial 6 posts
+  // loadInitPost() {
+  //   const url = 'http://localhost:8080/post/user/questions'
+    
+  //   const emailId = JSON.parse(localStorage.getItem('currentUser'))['emailId'];
+  //   console.log("email id  is  " + emailId);
+  //   this.http.get(url,  {
+  //     params : {
+  //       'emailId' : JSON.parse(localStorage.getItem('currentUser'))['emailId']
+  //     }
+
+  //   }).subscribe(data => {
+  //     // this.allpost = data;
+  //     this.allpost = data;
+  //     console.log(this.allpost);
+  //   }, error => {console.log(error)});
+  // }
 
   onClick(slug: String){
     console.log(slug);

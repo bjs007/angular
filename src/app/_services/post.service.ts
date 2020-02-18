@@ -3,24 +3,24 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Router } from '@angular/router';
 
 import { environment } from '../../environments/environment';
+import { map } from 'rxjs/operators';
 
 @Injectable()
 export class PostService {
-  allpost;
 
     constructor(private http: HttpClient,   private router: Router,) { }
 
    loadInitPost() { 
-    this.http.get(`${environment.apiUrl}/post/user/questions`,  {
+    return this.http.get<any>(`${environment.apiUrl}/post/user/questions`,  {
       params : {
         'emailId' : JSON.parse(localStorage.getItem('currentUser'))['emailId']
       }
 
-    }).subscribe(data => {
-      this.allpost = data;
-      console.log(this.allpost);
-    }, error => {return;});
+    }).pipe(map(posts =>{
+      if(posts){
+        return posts;
+      }
+    }));
   }
 
-  getPost(){return this.allpost;}
 }
