@@ -31,7 +31,7 @@ export class HomeComponent implements OnInit {
          
           // this.allpost =  this.postService.loadInitPost();
 
-        // this.loadInitPost();
+        this.loadInitPost();
         // console.log("Inside home component" + localStorage.getItem('currentUser'));
         }
         
