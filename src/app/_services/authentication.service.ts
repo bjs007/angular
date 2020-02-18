@@ -2,12 +2,13 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { map } from 'rxjs/operators';
 import { UserRegistrationRequest } from '../_models';
+import { Router } from '@angular/router';
 
 import { environment } from '../../environments/environment';
 
 @Injectable()
 export class AuthenticationService {
-    constructor(private http: HttpClient) { }
+    constructor(private http: HttpClient,   private router: Router,) { }
 
     login(emailId: string, password: string) {
 
@@ -18,7 +19,9 @@ export class AuthenticationService {
             }:{}
           );
 
-        return this.http.get<any>(`${environment.apiUrl}/users/login`, {headers:headers, withCredentials:true})
+        return this.http.get<any>(`${environment.apiUrl}/users/login`
+        , {headers:headers, withCredentials:true}
+        )
             .pipe(map(user => {
                
                 if (user ) {
@@ -33,5 +36,6 @@ export class AuthenticationService {
     logout() {
         // remove user from local storage to log user out
         localStorage.removeItem('currentUser');
+        this.router.navigate(['/login']);
     }
 }

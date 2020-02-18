@@ -19,11 +19,13 @@ import { routing }        from './app.routing';
 import { AlertComponent } from './_directives';
 import { AuthGuard } from './_guards';
 import { JwtInterceptor, ErrorInterceptor } from './_helpers';
-import { AlertService, AuthenticationService, UserService } from './_services';
+import { AlertService, AuthenticationService, UserService, PostService } from './_services';
 import { HomeComponent } from './home';
 import { LoginComponent } from './login';
 import { RegisterComponent } from './register';;
 import { LogoutComponent } from './logout/logout.component'
+import { PostComponent } from './post/post.component';
+import { CommentComponent } from './comment/comment.component';
 
 
 @Injectable()
@@ -31,7 +33,8 @@ export class XhrInterceptor implements HttpInterceptor {
 
   intercept(req: HttpRequest<any>, next: HttpHandler) {
     const xhr = req.clone({
-      headers: req.headers.set('X-Requested-With', 'XMLHttpRequest')
+      headers: req.headers.set('X-Requested-With', 'XMLHttpRequest'),
+      withCredentials:true
     });
     return next.handle(xhr);
   }
@@ -54,11 +57,13 @@ export class XhrInterceptor implements HttpInterceptor {
         RegisterComponent,
         LogoutComponent
 ,
-        LogoutComponent    ],
+        PostComponent,
+        CommentComponent    ],
     providers: [
         AuthGuard,
         AlertService,
         AuthenticationService,
+        PostService,
         UserService,
         { provide: HTTP_INTERCEPTORS, useClass: XhrInterceptor, multi: true },
         { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true }

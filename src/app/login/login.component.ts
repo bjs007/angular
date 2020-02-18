@@ -20,10 +20,10 @@ export class LoginComponent implements OnInit {
         private alertService: AlertService) {}
 
     ngOnInit() {
-        // if(localStorage.getItem('currentUser')){
-        //     console.log("User is logged in");
-        //     this.router.navigate(['/home']);
-        // }
+        if(localStorage.getItem('currentUser')){
+            console.log("User is logged in");
+            this.router.navigate(['/home']);
+        }
         
         this.loginForm = this.formBuilder.group({
             email: ['', [Validators.required,   Validators.pattern(/^([A-Za-z0-9_\-\.])+\@([A-Za-z0-9_\-\.])+\.([A-Za-z]{2,63})$/)]],

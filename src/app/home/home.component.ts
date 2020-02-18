@@ -1,9 +1,10 @@
 ﻿import { Component, OnInit } from '@angular/core';
 import { first } from 'rxjs/operators';
 import { User } from '../_models';
-import { UserService } from '../_services';
+import { UserService, PostService } from '../_services';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
+
 // import { NgxSpinnerService } from 'ngx-spinner';
 import { InfiniteScrollModule } from 'ngx-infinite-scroll';
 import { error } from 'protractor';
@@ -18,7 +19,7 @@ export class HomeComponent implements OnInit {
 
 
 
-    constructor(private userService: UserService, private http: HttpClient, private router: Router,) {
+    constructor(private postService : PostService, private userService: UserService, private http: HttpClient, private router: Router) {
         this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
     
     }
@@ -27,15 +28,18 @@ export class HomeComponent implements OnInit {
         if(!this.currentUser){
           this.router.navigate(['/login']);
         }else{
-         this.loadInitPost();
-        console.log("Inside home component" + localStorage.getItem('currentUser'));
+         
+          // this.allpost =  this.postService.loadInitPost();
+
+        // this.loadInitPost();
+        // console.log("Inside home component" + localStorage.getItem('currentUser'));
         }
         
     }
 
-    //load the Initial 6 posts
+    // load the Initial 6 posts
   loadInitPost() {
-    const url = 'http://localhost:8080/user/questions';
+    const url = 'http://localhost:8080/post/user/questions'
     
     const emailId = JSON.parse(localStorage.getItem('currentUser'))['emailId'];
     console.log("email id  is  " + emailId);
@@ -47,7 +51,13 @@ export class HomeComponent implements OnInit {
     }).subscribe(data => {
       // this.allpost = data;
       this.allpost = data;
-    }, error => {return;});
+      console.log(this.allpost);
+    }, error => {console.log(error)});
+  }
+
+  onClick(slug: String){
+    console.log(slug);
+    this.router.navigate(['comment', {slug: slug}]);
   }
 
     deleteUser(id: number) {
